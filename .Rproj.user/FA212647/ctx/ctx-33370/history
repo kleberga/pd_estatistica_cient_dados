@@ -1,0 +1,71 @@
+library(tidyverse)
+# carregar os dados
+dados <- read_csv2("data.csv")
+View(dados)
+View(dados)
+# carregar os dados
+dados <- read_csv2("data.csv", sep=",")
+# carregar os dados
+dados <- read_csv("data.csv", sep=",")
+# carregar os dados
+dados <- read_csv("data.csv", delim=",")
+# carregar os dados
+dados <- read_delim("data.csv", delim=",")
+View(dados)
+library(skimr)
+skimr(dados)
+skim(dados)
+library(tidyverse, verbose = F, warn.conflicts = F, quietly = T)
+library(skimr, verbose = T)
+library(skimr, verbose = F, warn.conflicts = F, quietly = T)
+# gerar algumas descricoes dos dados
+skim(dados) %>% skimr::kable()
+# gerar algumas descricoes dos dados
+skim(dados) %>% skimr::knit_print()
+# gerar algumas descricoes dos dados
+skim(dados) %>% kable()
+library(knitr)
+# gerar algumas descricoes dos dados
+skim(dados) %>% kable()
+# gerar algumas descricoes dos dados
+skim(dados) %>% knit_print()
+# gerar algumas descricoes dos dados
+skim(dados)
+options(cli.unicode = TRUE)
+# gerar algumas descricoes dos dados
+skim(dados)
+# carregar os dados
+dados <- read_delim("data.csv", delim=",", show_col_types = F)
+#| message: FALSE
+library(tidyverse)
+library(skimr)
+library(knitr)
+# carregar os dados
+dados <- read_delim("data.csv", delim=",", show_col_types = F)
+options(cli.unicode = TRUE)
+# gerar algumas descricoes dos dados
+skim(dados)
+install.packages("tidyverse")
+install.packages("skimr")
+install.packages("ggplot2")
+install.packages("knitr")
+#| message: FALSE
+library(tidyverse)
+library(skimr)
+# carregar os dados
+dados <- read_delim("data.csv", delim=",", show_col_types = F)
+options(cli.unicode = TRUE)
+# gerar algumas descricoes dos dados
+skim(dados)
+View(dados)
+View(dados)
+View(dados)
+unique(dados$action_type)
+View(dados)
+View(dados)
+View(dados)
+View(dados)
+View(dados)
+dados <- dados %>% drop_na()
+install.packages("summarytools")
+install.packages("tidyverse")

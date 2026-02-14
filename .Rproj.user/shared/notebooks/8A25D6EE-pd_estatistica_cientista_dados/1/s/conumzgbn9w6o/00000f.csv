@@ -1,0 +1,6 @@
+"0","resultado_phi <- phi(table(dados$playoffs, dados$shot_made_flag))"
+"0","print(resultado_phi)"
+"1","[1]"
+"1"," 0"
+"1","
+"

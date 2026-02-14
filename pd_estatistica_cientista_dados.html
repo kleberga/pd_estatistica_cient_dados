@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kleber Giovelli Abitante">
+
+<title>PD da disciplina ‘Estatística para Cientistas de Dados [26E1_2]’</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="pd_estatistica_cientista_dados_files/libs/clipboard/clipboard.min.js"></script>
+<script src="pd_estatistica_cientista_dados_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="pd_estatistica_cientista_dados_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="pd_estatistica_cientista_dados_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="pd_estatistica_cientista_dados_files/libs/quarto-html/popper.min.js"></script>
+<script src="pd_estatistica_cientista_dados_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="pd_estatistica_cientista_dados_files/libs/quarto-html/anchor.min.js"></script>
+<link href="pd_estatistica_cientista_dados_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="pd_estatistica_cientista_dados_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="pd_estatistica_cientista_dados_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="pd_estatistica_cientista_dados_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="pd_estatistica_cientista_dados_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="pd_estatistica_cientista_dados_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="pd_estatistica_cientista_dados_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="pd_estatistica_cientista_dados_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="pd_estatistica_cientista_dados_files/libs/datatables-binding-0.34.0/datatables.js"></script>
+
+<script src="pd_estatistica_cientista_dados_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="pd_estatistica_cientista_dados_files/libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="pd_estatistica_cientista_dados_files/libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="pd_estatistica_cientista_dados_files/libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link href="pd_estatistica_cientista_dados_files/libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="pd_estatistica_cientista_dados_files/libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PD da disciplina ‘Estatística para Cientistas de Dados [26E1_2]’</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kleber Giovelli Abitante </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="mostre-através-de-prints-que-você-tem-acesso-a-uma-plataforma-rstudio-instalado-localmente-ou-nuvem." class="level3">
+<h3 class="anchored" data-anchor-id="mostre-através-de-prints-que-você-tem-acesso-a-uma-plataforma-rstudio-instalado-localmente-ou-nuvem.">1. Mostre através de prints que você tem acesso a uma plataforma RStudio (instalado localmente ou nuvem).</h3>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"><img src="rstudio_plataforma.png" class="img-fluid"></h2>
+<section id="escolha-uma-base-de-dados-para-realizar-esse-projeto.-essa-base-de-dados-será-utilizada-durante-toda-sua-análise.-essa-base-necessita-ter-4-ou-mais-variáveis-de-interesse.-caso-você-tenha-dificuldade-para-escolher-uma-base-o-professor-da-disciplina-irá-designar-para-você." class="level3">
+<h3 class="anchored" data-anchor-id="escolha-uma-base-de-dados-para-realizar-esse-projeto.-essa-base-de-dados-será-utilizada-durante-toda-sua-análise.-essa-base-necessita-ter-4-ou-mais-variáveis-de-interesse.-caso-você-tenha-dificuldade-para-escolher-uma-base-o-professor-da-disciplina-irá-designar-para-você.">2. Escolha uma base de dados para realizar esse projeto. Essa base de dados será utilizada durante toda sua análise. Essa base necessita ter 4 (ou mais) variáveis de interesse. Caso você tenha dificuldade para escolher uma base, o professor da disciplina irá designar para você.</h3>
+<p><br></p>
+<p>Resposta: a base escolhida foi uma base do Kaggle que contém arremessos (em jogos de basquete da NBA) realizados pelo falecido jogador Kobe Bryant. A base possui 30.697 arremessos, representados pelas linhas, e 25 variáveis, que estão nas colunas. O resultado da função <em>skim()</em> abaixo apresenta algumas informações sobre as variáveis.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># definir a vírgula como separador de decimal</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">OutDec =</span> <span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># carregar os dados</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"data.csv"</span>, <span class="at">delim=</span><span class="st">","</span>, <span class="at">show_col_types =</span> F)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># gerar algumas descricoes dos dados</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(dados)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">dados</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">30697</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 12%">
+<col style="width: 18%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">empty</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: right;">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">action_type</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">combined_shot_type</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">season</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shot_type</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shot_zone_area</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shot_zone_basic</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shot_zone_range</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">team_name</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">matchup</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">74</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">opponent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: Date</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">min</th>
+<th style="text-align: left;">max</th>
+<th style="text-align: left;">median</th>
+<th style="text-align: right;">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">game_date</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">1996-11-03</td>
+<td style="text-align: left;">2016-04-13</td>
+<td style="text-align: left;">2006-05-04</td>
+<td style="text-align: right;">1559</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">game_event_id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">249,19</td>
+<td style="text-align: right;">150,00</td>
+<td style="text-align: right;">2,00</td>
+<td style="text-align: right;">110,00</td>
+<td style="text-align: right;">253,00</td>
+<td style="text-align: right;">368,00</td>
+<td style="text-align: right;">659,00</td>
+<td style="text-align: left;">▇▇▇▅▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">game_id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">24764065,87</td>
+<td style="text-align: right;">7755174,89</td>
+<td style="text-align: right;">20000012,00</td>
+<td style="text-align: right;">20500077,00</td>
+<td style="text-align: right;">20900354,00</td>
+<td style="text-align: right;">29600474,00</td>
+<td style="text-align: right;">49900088,00</td>
+<td style="text-align: left;">▇▁▁▂▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">lat</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">33,95</td>
+<td style="text-align: right;">0,09</td>
+<td style="text-align: right;">33,25</td>
+<td style="text-align: right;">33,88</td>
+<td style="text-align: right;">33,97</td>
+<td style="text-align: right;">34,04</td>
+<td style="text-align: right;">34,09</td>
+<td style="text-align: left;">▁▁▁▅▇</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">loc_x</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">7,11</td>
+<td style="text-align: right;">110,12</td>
+<td style="text-align: right;">-250,00</td>
+<td style="text-align: right;">-68,00</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">95,00</td>
+<td style="text-align: right;">248,00</td>
+<td style="text-align: left;">▂▃▇▅▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">loc_y</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">91,11</td>
+<td style="text-align: right;">87,79</td>
+<td style="text-align: right;">-44,00</td>
+<td style="text-align: right;">4,00</td>
+<td style="text-align: right;">74,00</td>
+<td style="text-align: right;">160,00</td>
+<td style="text-align: right;">791,00</td>
+<td style="text-align: left;">▇▅▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lon</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">-118,26</td>
+<td style="text-align: right;">0,11</td>
+<td style="text-align: right;">-118,52</td>
+<td style="text-align: right;">-118,34</td>
+<td style="text-align: right;">-118,27</td>
+<td style="text-align: right;">-118,17</td>
+<td style="text-align: right;">-118,02</td>
+<td style="text-align: left;">▂▃▇▅▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">minutes_remaining</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">4,89</td>
+<td style="text-align: right;">3,45</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">2,00</td>
+<td style="text-align: right;">5,00</td>
+<td style="text-align: right;">8,00</td>
+<td style="text-align: right;">11,00</td>
+<td style="text-align: left;">▇▅▅▃▅</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">period</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">2,52</td>
+<td style="text-align: right;">1,15</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">3,00</td>
+<td style="text-align: right;">3,00</td>
+<td style="text-align: right;">7,00</td>
+<td style="text-align: left;">▇▅▃▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">playoffs</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">0,15</td>
+<td style="text-align: right;">0,35</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: left;">▇▁▁▁▂</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">seconds_remaining</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">28,37</td>
+<td style="text-align: right;">17,48</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">13,00</td>
+<td style="text-align: right;">28,00</td>
+<td style="text-align: right;">43,00</td>
+<td style="text-align: right;">59,00</td>
+<td style="text-align: left;">▇▇▇▇▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">shot_distance</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">13,44</td>
+<td style="text-align: right;">9,37</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">5,00</td>
+<td style="text-align: right;">15,00</td>
+<td style="text-align: right;">21,00</td>
+<td style="text-align: right;">79,00</td>
+<td style="text-align: left;">▇▇▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shot_made_flag</td>
+<td style="text-align: right;">5000</td>
+<td style="text-align: right;">0,84</td>
+<td style="text-align: right;">0,45</td>
+<td style="text-align: right;">0,50</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: left;">▇▁▁▁▆</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">team_id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">1610612747,00</td>
+<td style="text-align: right;">0,00</td>
+<td style="text-align: right;">1610612747,00</td>
+<td style="text-align: right;">1610612747,00</td>
+<td style="text-align: right;">1610612747,00</td>
+<td style="text-align: right;">1610612747,00</td>
+<td style="text-align: right;">1610612747,00</td>
+<td style="text-align: left;">▁▁▇▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">shot_id</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">15349,00</td>
+<td style="text-align: right;">8861,60</td>
+<td style="text-align: right;">1,00</td>
+<td style="text-align: right;">7675,00</td>
+<td style="text-align: right;">15349,00</td>
+<td style="text-align: right;">23023,00</td>
+<td style="text-align: right;">30697,00</td>
+<td style="text-align: left;">▇▇▇▇▇</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>A seguir, é apresentada uma descrição de cada variável da base, segundo o Kaggle:</p>
+<ol type="1">
+<li><p><strong>action_type</strong>: diferentes tipos de arremesso (57 tipos diferentes);</p></li>
+<li><p><strong>combined_shot_type</strong>: tipos gerais de arremesso (6 tipos diferentes);</p></li>
+<li><p><strong>game_event_id</strong>: identificador de jogo. O Kaggle não deixa claro do que se trata esse campo, pois ele não é único, podendo se repetir em vários jogos;</p></li>
+<li><p><strong>game_id</strong>: identificador único de cada jogo;</p></li>
+<li><p><strong>lat</strong>: latitude da quadra em que o jogo ocorreu;</p></li>
+<li><p><strong>lon</strong>: longitude da quadra em que o jogo ocorreu;</p></li>
+<li><p><strong>loc_x</strong>: local no eixo-x da quadra de onde o arremesso foi feito (-250 = parte inferior direita da quadra até 250 = parte superior direita da quadra, onde a cesta está no centro do lado direito);</p></li>
+<li><p><strong>loc_y</strong>: local no eixo-y da quadra de onde o arremesso foi feito (-40 = lado direito até 900 = lado esquerdo, onde a cesta está no centro do lado direito);</p></li>
+<li><p><strong>minutes_remaining</strong>: minutos faltando para terminar o período (máximo de 12);</p></li>
+<li><p><strong>period</strong>: período do jogo (em geral, possui 4, mas podem ser mais em caso de empate);</p></li>
+<li><p><strong>playoffs</strong>: indicador se o jogo é de <em>playoffs</em> (1) ou não (0);</p></li>
+<li><p><strong>season</strong>: temporada da NBA em que o jogo ocorreu (1996-97 até 2015-16);</p></li>
+<li><p><strong>seconds_remaining</strong>: segundos faltando para terminar o período;</p></li>
+<li><p><strong>shot_distance</strong>: distância (em metros) de onde o arremesso foi feito;</p></li>
+<li><p><strong>shot_type</strong>: 2-pontos ou 3-pontos;</p></li>
+<li><p><strong>shot_zone_area</strong>: área da quadra de onde o arremesso foi feito (BC, C, LC, L, RC, R);</p></li>
+<li><p><strong>shot_zone_basic</strong>: zona da quadra de onde o arremesso foi feito (total de 7);</p></li>
+<li><p><strong>shot_zone_range</strong>: intervalo (em metros) de onde o arremesso foi feito (&lt;8, 8-16, 16-24, 24+, fundo da quadra);</p></li>
+<li><p><strong>team_id</strong>: sempre 1610612747, que é o id do único time em que Kobe Bryant jogou (Los Angeles Lakers);</p></li>
+<li><p><strong>team_name</strong>: sempre Los Angeles Lakers;</p></li>
+<li><p><strong>game_date</strong>: data em que ocorreu o jogo;</p></li>
+<li><p><strong>matchup</strong>: id dos times que jogaram a partida;</p></li>
+<li><p><strong>opponent</strong>: id do time adversário;</p></li>
+<li><p><strong>shot_made_flag</strong>: indica se o arremesso teve êxito (1) ou não (0); e</p></li>
+<li><p><strong>shot_id</strong>: identificador único de cada arremesso.</p></li>
+</ol>
+<p>Nota-se que há 10 colunas no formato de caracter, 1 coluna no formato de data e 14 colunas numéricas. As variáveis identificadoras (<em>game_event_id</em>, <em>game_id</em>, <em>team_id</em> e <em>shot_id</em>), apesar de terem sido carregadas como numéricas e terem as suas estatísticas descritivas calculadas anteriormente, estas estatísticas não tem relevância, pois estas variáveis servem apenas para identificar os dados.</p>
+<p>A única variável com valores faltantes (<em>NA</em>) é a variável <em>shot_made_flag</em>, que possui 5.000 valores faltantes. Isso decorre dessa base ter sido usada em uma competição de <em>machine learning,</em> na qual o objetivo era utilizar as demais variáveis para prever estes valores faltantes. Assim, para fins deste trabalho, essas observações serão excluídas, conforme o código abaixo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="explique-qual-o-motivo-para-a-escolha-dessa-base-e-explique-os-resultados-esperados-através-da-análise." class="level3">
+<h3 class="anchored" data-anchor-id="explique-qual-o-motivo-para-a-escolha-dessa-base-e-explique-os-resultados-esperados-através-da-análise.">3. Explique qual o motivo para a escolha dessa base e explique os resultados esperados através da análise.</h3>
+<p>Resposta: escolhi esta base porque acompanho jogos de basquete e acho interessante avaliar estatísticas esportivas. Eu espero, por meio da estatística descritiva, identificar:</p>
+<ul>
+<li><p>Qual a distância da cesta em que Kobe Bryant mais arriscava arremessos; e</p></li>
+<li><p>Se o aproveitamento dele mudava nos <em>playoffs</em> em comparação com a temporada regular.</p></li>
+</ul>
+</section>
+<section id="carregue-a-base-para-o-rstudio-e-comprove-o-carregamento-tirando-um-print-da-tela-com-a-base-escolhida-presente-na-área-ambienteenviroment.-detalhe-como-você-realizou-o-carregamento-dos-dados." class="level3">
+<h3 class="anchored" data-anchor-id="carregue-a-base-para-o-rstudio-e-comprove-o-carregamento-tirando-um-print-da-tela-com-a-base-escolhida-presente-na-área-ambienteenviroment.-detalhe-como-você-realizou-o-carregamento-dos-dados.">4. Carregue a base para o RStudio e comprove o carregamento tirando um print da tela com a base escolhida presente na área “Ambiente”/Enviroment. Detalhe como você realizou o carregamento dos dados.</h3>
+<p>Resposta:</p>
+<p><img src="ambiente.png" class="img-fluid"></p>
+<p>A base foi carregada da seguinte forma:</p>
+<ol type="1">
+<li><p>Foi acessado o site contendo a base de dados: <a href="https://www.kaggle.com/competitions/kobe-bryant-shot-selection/data" class="uri">https://www.kaggle.com/competitions/kobe-bryant-shot-selection/data</a>;</p></li>
+<li><p>Após efetuar login no site, o arquivo .zip foi baixado e descompactado na pasta do projeto do R na qual este trabalho foi desenvolvido;</p></li>
+<li><p>O arquivo foi aberto no Bloco de Notas e verificou-se que as colunas estavam separadas por vírgula. Assim, foi utilizada a função <code>read_delim()</code>, da coletânea de pacotes <code>tidyverse</code>, com o argumento <code>delim = ","</code>. O código completo utilizado para baixar os dados foi o seguinte:<br>
+<code>dados &lt;- read_delim("data.csv", delim=",", show_col_types = F)</code>.</p></li>
+</ol>
+</section>
+<section id="instale-e-carregue-os-pacotes-de-r-necessários-para-sua-análise-mostre-o-código-necessário" class="level3">
+<h3 class="anchored" data-anchor-id="instale-e-carregue-os-pacotes-de-r-necessários-para-sua-análise-mostre-o-código-necessário">5. Instale e carregue os pacotes de R necessários para sua análise (mostre o código necessário):</h3>
+<p><strong>a. tidyverse</strong></p>
+<p><strong>b. ggplot</strong></p>
+<p><strong>c.&nbsp;summarytools</strong></p>
+<p>Resposta:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"summarytools"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(summarytools)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="escolha-outros-pacotes-necessários-aponte-sua-necessidade-e-instale-e-carregue-mostrando-o-código-necessário." class="level3">
+<h3 class="anchored" data-anchor-id="escolha-outros-pacotes-necessários-aponte-sua-necessidade-e-instale-e-carregue-mostrando-o-código-necessário.">6. Escolha outros pacotes necessários, aponte sua necessidade e instale e carregue (mostrando o código necessário).</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="aplique-uma-função-em-r-que-seja-útil-para-sua-análise-e-mostre." class="level3">
+<h3 class="anchored" data-anchor-id="aplique-uma-função-em-r-que-seja-útil-para-sua-análise-e-mostre.">7. Aplique uma função em R que seja útil para sua análise e mostre.</h3>
+<p>Resposta: o código a seguir tem por objetivo calcular o aproveitamento de Kobe Bryant nos arremessos da temporada regular (<em>playoffs</em> = 0) e nos <em>playoffs</em> (<em>playoffs</em> = 1), a fim de verificar se há diferença. O aproveitamento foi calculado na variável <em>proporcao_acertos</em>, que representa a razão entre o número de acertos e o número de arremessos tentados.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dados_playoffs <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(playoffs) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_shots =</span> <span class="fu">n</span>(),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_shot_made_flag =</span> <span class="fu">sum</span>(shot_made_flag),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">proporcao_acertos =</span> total_shot_made_flag<span class="sc">/</span>total_shots <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>dados_playoffs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  playoffs total_shots total_shot_made_flag proporcao_acertos
+     &lt;dbl&gt;       &lt;int&gt;                &lt;dbl&gt;             &lt;dbl&gt;
+1        0       21939                 9794              44.6
+2        1        3758                 1671              44.5</code></pre>
+</div>
+</div>
+<p>Os resultados indicaram que o aproveitamento na temporada regular foi de 44,6%, ligeiramente acima do aproveitamento nos <em>playoffs</em> (44,5%). Essa diferença é pequena, mas pode ser decorrente do padrão de jogo dos <em>playoffs</em>, quando a defesa é mais intensa e os arremessos costumam ser mais contestados, reduzindo um pouco a eficiência.</p>
+</section>
+<section id="escolha-uma-variável-de-seu-banco-de-dados-e-calcule" class="level3">
+<h3 class="anchored" data-anchor-id="escolha-uma-variável-de-seu-banco-de-dados-e-calcule">8. Escolha uma variável de seu banco de dados e calcule:</h3>
+<p><strong>a. a média para todos os eventos</strong></p>
+<p><strong>b. o desvio padrão</strong></p>
+<p><strong>c.&nbsp;os quantis: 25% a 75%</strong></p>
+<p>Resposta: a variável escolhida foi <em>minutes_remaining</em>. O código a seguir calcula a média, desvio padrão e os quantis 25% e 75%.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcular as métricas</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>media_minutes_remaining <span class="ot">&lt;-</span> dados<span class="sc">$</span>minutes_remaining <span class="sc">%&gt;%</span> <span class="fu">mean</span>()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>std_minutes_remaining <span class="ot">&lt;-</span> dados<span class="sc">$</span>minutes_remaining <span class="sc">%&gt;%</span> <span class="fu">sd</span>()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>quantis <span class="ot">&lt;-</span> dados<span class="sc">$</span>minutes_remaining <span class="sc">%&gt;%</span> <span class="fu">quantile</span>(<span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># imprimir na tela</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"Média: "</span>, <span class="fu">round</span>(media_minutes_remaining,<span class="dv">2</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"Desvio padrão: "</span>, <span class="fu">round</span>(std_minutes_remaining,<span class="dv">2</span>))</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"Quantil 25%: "</span>, <span class="fu">as.vector</span>(quantis[<span class="dv">1</span>]))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"Quantil 75%: "</span>, <span class="fu">as.vector</span>(quantis[<span class="dv">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell quarto-layout-panel" data-layout-nrow="4">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[1] "Média: 4,89"</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[1] "Desvio padrão: 3,45"</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[1] "Quantil 25%: 2"</code></pre>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[1] "Quantil 75%: 8"</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="utilizando-o-pacote-summarytools-função-descr-descreva-estatisticamente-a-sua-base-de-dados." class="level3">
+<h3 class="anchored" data-anchor-id="utilizando-o-pacote-summarytools-função-descr-descreva-estatisticamente-a-sua-base-de-dados.">9. Utilizando o pacote summarytools (função descr), descreva estatisticamente a sua base de dados.</h3>
+<p>Resposta: a função <code>descr()</code> já remove, automaticamente, as variáveis não numéricas e calcula as estatísticas descritivas apenas para as demais. O problema é que a base em questão possui algumas variáveis numéricas que também devem ser removidas:</p>
+<ol type="1">
+<li><p>variáveis identificadoras: <em>game_event_id</em>, <em>game_id</em>, <em>team_id</em> e <em>shot_id</em>; e</p></li>
+<li><p>variáveis numéricas categóricas (variáveis binárias, que representam categorias): <em>playoffs</em> e <em>shot_made_flag</em>.</p></li>
+</ol>
+<p>Portanto, antes de aplicar a função <code>descr()</code>, foi criado uma nova base de dados apenas com as variáveis numéricas cujas estatísticas descritivas têm significado, denominada <code>dados_num</code>, e a função <code>descr()</code> foi aplicada nela. O resultado é mostrado a seguir.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># selecionar as variáveis numéricas mas excluir as variáveis identificadoras e as variáveis categóricas</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dados_num <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> <span class="fu">select</span>(</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  lat, loc_x, loc_y, lon, minutes_remaining, period, seconds_remaining, shot_distance</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># gerar estatísticas descritivas</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>est_descr <span class="ot">&lt;-</span> <span class="fu">descr</span>(dados_num)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># arredondar para duas casas decimais</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>est_descr <span class="ot">&lt;-</span> <span class="fu">round</span>(est_descr, <span class="dv">2</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># criar uma tabela com scroll</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  est_descr,</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollX =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollY =</span> <span class="st">"450px"</span>,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">pageLength =</span> <span class="dv">10</span>,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">'t'</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b4eb1bb6afe759125015" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b4eb1bb6afe759125015">{"x":{"filter":"none","vertical":false,"data":[["Mean","Std.Dev","Min","Q1","Median","Q3","Max","MAD","IQR","CV","Skewness","SE.Skewness","Kurtosis","N.Valid","N","Pct.Valid"],[33.95,0.09,33.25,33.88,33.97,34.04,34.09,0.11,0.16,0,-0.84,0.02,1.39,25697,25697,100],[7.15,110.07,-250,-67,0,94,248,124.54,161,15.4,-0.08,0.02,-0.67,25697,25697,100],[91.26000000000001,88.15000000000001,-44,4,74,160,791,109.71,156,0.97,0.84,0.02,1.39,25697,25697,100],[-118.26,0.11,-118.52,-118.34,-118.27,-118.18,-118.02,0.12,0.16,-0,-0.08,0.02,-0.67,25697,25697,100],[4.89,3.45,0,2,5,8,11,4.45,6,0.71,0.2,0.02,-1.17,25697,25697,100],[2.52,1.15,1,1,3,3,7,1.48,2,0.46,0.05,0.02,-1.16,25697,25697,100],[28.31,17.52,0,13,28,43,59,22.24,30,0.62,0.04,0.02,-1.19,25697,25697,100],[13.46,9.390000000000001,0,5,15,21,79,11.86,16,0.7,0.13,0.02,0.16,25697,25697,100]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>lat<\/th>\n      <th>loc_x<\/th>\n      <th>loc_y<\/th>\n      <th>lon<\/th>\n      <th>minutes_remaining<\/th>\n      <th>period<\/th>\n      <th>seconds_remaining<\/th>\n      <th>shot_distance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"scrollY":"450px","pageLength":10,"dom":"t","columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"lat","targets":1},{"name":"loc_x","targets":2},{"name":"loc_y","targets":3},{"name":"lon","targets":4},{"name":"minutes_remaining","targets":5},{"name":"period","targets":6},{"name":"seconds_remaining","targets":7},{"name":"shot_distance","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="escolha-uma-variável-e-crie-um-histograma.-justifique-o-número-de-bins-usados.-a-distribuição-dessa-variável-se-aproxima-de-uma-normal-justifique." class="level3">
+<h3 class="anchored" data-anchor-id="escolha-uma-variável-e-crie-um-histograma.-justifique-o-número-de-bins-usados.-a-distribuição-dessa-variável-se-aproxima-de-uma-normal-justifique.">10. Escolha uma variável e crie um histograma. Justifique o número de bins usados. A distribuição dessa variável se aproxima de uma “normal”? Justifique.</h3>
+<p>Resposta: a variável escolhida foi <em>shot_distance</em>. O código abaixo gera o histograma da variável. O número de <em>bins (k</em>) foi escolhido por meio da estatística de Freedman-Diaconis, conhecida por ser mais robusta para distribuições assimétricas, que consiste no seguinte cálculo:</p>
+<p><span class="math inline">\(k = \frac{max(x) - min(x)}{h}\)</span></p>
+<p>onde:</p>
+<p><span class="math inline">\(h = 2\frac{IQR}{n^{1/3}}\)</span></p>
+<p><em>IQR</em> é o intervalo interquartil e <em>n</em> é o número de observações.</p>
+<p>O código a seguir calcula a estatística de Freedman-Diaconis (variável <em>bins_fd</em>) e, em seguida, gera o histograma.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcular o número de bins segundo a estatística de Freedman-Diaconis</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>bins_fd <span class="ot">&lt;-</span> <span class="fu">nclass.FD</span>(dados<span class="sc">$</span>shot_distance)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fazer o histograma</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x=</span>shot_distance)) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span>bins_fd) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Histograma da variável 'shot_distance'"</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Contagem"</span>, <span class="at">x =</span> <span class="st">"Valores de 'shot_distance'"</span>) <span class="sc">+</span> </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pd_estatistica_cientista_dados_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O gráfico mostra que Kobe Bryant arriscava mais arremessos de curta distância da cesta (próximos de zero). A variável não apresenta distribuição “normal”, pois o histograma revela assimetria: a moda está deslocada para a cauda esquerda, com concentração de valores baixos e uma cauda longa à direita. Diferentemente da distribuição “normal”, que é simétrica e tem formato de sino com a moda no centro.</p>
+</section>
+<section id="calcule-a-correlação-entre-todas-as-variáveis-dessa-base.-quais-são-as-3-pares-de-variáveis-mais-correlacionadas" class="level3">
+<h3 class="anchored" data-anchor-id="calcule-a-correlação-entre-todas-as-variáveis-dessa-base.-quais-são-as-3-pares-de-variáveis-mais-correlacionadas">11. Calcule a correlação entre todas as variáveis dessa base. Quais são as 3 pares de variáveis mais correlacionadas?</h3>
+<p>Resposta: para esta questão, primeiro foi calculada a correlação de Pearson entre as variáveis numéricas contínuas, que estão na base <code>dados_num</code>. Os resultados são mostrados abaixo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcular a correlação de pearson</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>matriz_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(dados_num, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># converter em data.frame</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>df_cor <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">round</span>(matriz_cor, <span class="dv">2</span>))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># criar uma tabela com scroll</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  df_cor,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollX =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollY =</span> <span class="st">"400px"</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">pageLength =</span> <span class="dv">10</span>,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">'t'</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">colnames =</span> <span class="fu">c</span>(<span class="st">'Variável'</span> <span class="ot">=</span> <span class="dv">1</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">formatRound</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df_cor)), <span class="at">dec.mark =</span> <span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-f0c66646e75905f61552" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f0c66646e75905f61552">{"x":{"filter":"none","vertical":false,"data":[["lat","loc_x","loc_y","lon","minutes_remaining","period","seconds_remaining","shot_distance"],[1,0.02,-1,0.02,0.08,-0.04,0.06,-0.82],[0.02,1,-0.02,1,0.01,-0.03,0,0.02],[-1,-0.02,1,-0.02,-0.08,0.04,-0.06,0.82],[0.02,1,-0.02,1,0.01,-0.03,0,0.02],[0.08,0.01,-0.08,0.01,1,-0.05,0.02,-0.06],[-0.04,-0.03,0.04,-0.03,-0.05,1,0.01,0.05],[0.06,0,-0.06,0,0.02,0.01,1,-0.06],[-0.82,0.02,0.82,0.02,-0.06,0.05,-0.06,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variável<\/th>\n      <th>lat<\/th>\n      <th>loc_x<\/th>\n      <th>loc_y<\/th>\n      <th>lon<\/th>\n      <th>minutes_remaining<\/th>\n      <th>period<\/th>\n      <th>seconds_remaining<\/th>\n      <th>shot_distance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"scrollY":"400px","pageLength":10,"dom":"t","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":8,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6,7,8]},{"name":" ","targets":0},{"name":"lat","targets":1},{"name":"loc_x","targets":2},{"name":"loc_y","targets":3},{"name":"lon","targets":4},{"name":"minutes_remaining","targets":5},{"name":"period","targets":6},{"name":"seconds_remaining","targets":7},{"name":"shot_distance","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render","options.columnDefs.6.render","options.columnDefs.7.render"],"jsHooks":[]}</script>
+</div>
+</div>
+<p><br></p>
+<p>A tabela anterior mostra que a correlação entre as variáveis <em>lat</em> e <em>loc_y</em> e <em>lon</em> e <em>loc_x</em> é perfeita (-1 e 1, respectivamente). Isso indica redundância total, onde ambos os pares descrevem a mesma localização geográfica em sistemas de coordenadas diferentes. Para simplificar a base, optou-se por eliminar as variáveis <em>lat</em> e <em>lon</em>, conforme demonstrado no código abaixo. Com isso, a base <em>dados_num</em> foi refeita, assim como as correlações.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># eliminar as colunas desnecessaria</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>lat, <span class="sc">-</span>lon)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># selecionar as variáveis numéricas mas excluir as variáveis identificadoras e as variáveis categóricas</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>dados_num <span class="ot">&lt;-</span> dados <span class="sc">%&gt;%</span> <span class="fu">select</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  loc_x, loc_y, minutes_remaining, period, seconds_remaining, shot_distance</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># calcular a correlação de pearson</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>matriz_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(dados_num, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># converter em data.frame</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>df_cor <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">round</span>(matriz_cor, <span class="dv">2</span>))</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># criar uma tabela com scroll</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  df_cor,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollX =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollY =</span> <span class="st">"300px"</span>,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">pageLength =</span> <span class="dv">10</span>,</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">'t'</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">colnames =</span> <span class="fu">c</span>(<span class="st">'Variável'</span> <span class="ot">=</span> <span class="dv">1</span>)</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">formatRound</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df_cor)), <span class="at">dec.mark =</span> <span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-fa1198ba645eddfa04b0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-fa1198ba645eddfa04b0">{"x":{"filter":"none","vertical":false,"data":[["loc_x","loc_y","minutes_remaining","period","seconds_remaining","shot_distance"],[1,-0.02,0.01,-0.03,0,0.02],[-0.02,1,-0.08,0.04,-0.06,0.82],[0.01,-0.08,1,-0.05,0.02,-0.06],[-0.03,0.04,-0.05,1,0.01,0.05],[0,-0.06,0.02,0.01,1,-0.06],[0.02,0.82,-0.06,0.05,-0.06,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variável<\/th>\n      <th>loc_x<\/th>\n      <th>loc_y<\/th>\n      <th>minutes_remaining<\/th>\n      <th>period<\/th>\n      <th>seconds_remaining<\/th>\n      <th>shot_distance<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"scrollY":"300px","pageLength":10,"dom":"t","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":3,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"className":"dt-right","targets":[1,2,3,4,5,6]},{"name":" ","targets":0},{"name":"loc_x","targets":1},{"name":"loc_y","targets":2},{"name":"minutes_remaining","targets":3},{"name":"period","targets":4},{"name":"seconds_remaining","targets":5},{"name":"shot_distance","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render","options.columnDefs.4.render","options.columnDefs.5.render"],"jsHooks":[]}</script>
+</div>
+</div>
+<p><br></p>
+<p>Como a correlação de Pearson não é a mais indicada para o medir a correlação entre variáveis binárias, a correlação entre estas variáveis (<em>playoffs</em> e <em>shot_made_flag</em>) foi feita por meio do cálculo do Coeficiente Phi (<span class="math inline">\(\phi\)</span>). O resultado, abaixo, mostra que não há correlação entre estas variáveis (<em>resultado_phi</em>).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>resultado_phi <span class="ot">&lt;-</span> <span class="fu">phi</span>(<span class="fu">table</span>(dados<span class="sc">$</span>playoffs, dados<span class="sc">$</span>shot_made_flag))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(resultado_phi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>Por fim, falta calcular a correlação entre as variáveis binárias e as variáveis contínuas. Esta correlação é chama Ponto-Biserial e o valor é exatamente o mesmo da Correlação de Pearson, mas a interpretação é focada em grupos, verificando a distância entre as médias dos dois grupos (0 e 1). O código a seguir calcula a Correlação Ponto-Biserial entre as variáveis <em>playoffs</em> e <em>shot_made_flag</em> e as variáveis contínuas.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># criar vetor com os nomes das variaveis continuas</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>variaveis_continuas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"loc_x"</span>, <span class="st">"loc_y"</span>, <span class="st">"minutes_remaining"</span>, <span class="st">"period"</span>, <span class="st">"seconds_remaining"</span>, <span class="st">"shot_distance"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># criar vetor com os nomes das variaveis binarias</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>variaveis_binarias <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"playoffs"</span>, <span class="st">"shot_made_flag"</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># criar lista vazia para armazenar os resultados</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>lista_cor <span class="ot">&lt;-</span><span class="fu">list</span>() </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> variaveis_continuas){</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(w <span class="cf">in</span> variaveis_binarias){</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    lista_cor[[i]][[w]] <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">as.vector</span>(<span class="fu">cor</span>(dados[,i], dados[,w])),<span class="dv">2</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co"># criar uma tibble</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>df_cor_2 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(lista_cor)</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co"># criar a coluna com nome das variaveis e colocar ela no inicio </span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>df_cor_2 <span class="ot">&lt;-</span> df_cor_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">var =</span> <span class="fu">names</span>(lista_cor)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(var, <span class="at">.before =</span> <span class="dv">1</span>)</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="co"># criar uma tabela com scroll</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(</span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  df_cor_2,</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollX =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">scrollY =</span> <span class="st">"300px"</span>,</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">pageLength =</span> <span class="dv">10</span>,</span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">dom =</span> <span class="st">'t'</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">colnames =</span> <span class="fu">c</span>(<span class="st">'Variável'</span> <span class="ot">=</span> <span class="dv">2</span>),</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">rownames =</span> F</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">formatRound</span>(<span class="at">columns =</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(df_cor_2)), <span class="at">dec.mark =</span> <span class="st">","</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-13060574953ed30a9cc1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-13060574953ed30a9cc1">{"x":{"filter":"none","vertical":false,"data":[["loc_x","loc_y","minutes_remaining","period","seconds_remaining","shot_distance"],[-0.01,0,0.01,0,-0.01,-0.01],[-0,-0.15,0.03,-0.03,0.03,-0.2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>var<\/th>\n      <th>Variável<\/th>\n      <th>shot_made_flag<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"scrollY":"300px","pageLength":10,"dom":"t","columnDefs":[{"targets":1,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"targets":2,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 2, 3, \",\", \",\", null);\n  }"},{"className":"dt-right","targets":[1,2]},{"name":"var","targets":0},{"name":"playoffs","targets":1},{"name":"shot_made_flag","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render"],"jsHooks":[]}</script>
+</div>
+</div>
+<p><br></p>
+<p>O resultado indicou que os três pares de maior correlação foram:</p>
+<ol type="1">
+<li><p><em>shot_distance</em> e <em>loc_y</em> (0,82). A correlação é alta e positiva. Indica que a distância do arremesso está positivamente correlacionada com a localização no eixo-y da quadra em que o arremesso ocorreu. Quando maior a distância do arremesso, maior a localização no eixo-y em que o arremesso foi realizado. Esta alta correlação é esperada, uma vez que a localização do arremesso no eixo-y influencia de forma significativa a distância do arremesso;</p></li>
+<li><p><em>shot_made_flag</em> e <em>shot_distance</em> (-0,20). A correlação Ponto-Biserial foi negativa e fraca. Como a <em>shot_made_flag</em> é binária, a interpretação é de que o grupo 1 (arremesso com êxito) em <em>shot_made_flag</em> apresenta tendência a valores mais baixos na variável <em>shot_distance</em>, em comparação com o grupo 0 (arremesso sem êxito). Ou seja, arremessos de curta distância estiveram associados com mais arremessos bem sucedidos. Contudo, a magnitude do efeito é pequena, sugerindo que a variável binária possui um poder preditivo limitado sobre a variável contínua neste contexto; e</p></li>
+<li><p><em>minutes_remaining</em> e <em>loc_y</em> (-0,08). A correlação é fraca e mostra que conforme os minutos para terminar o período de jogo diminuem (ou seja, o fim do período se aproxima), a distância aumentaria. Mas a tendência é fraca para ser considerada uma regra.</p></li>
+</ol>
+</section>
+<section id="crie-um-scatterplot-entre-duas-variáveis-das-resposta-anterior.-qual-a-relação-da-imagem-com-a-correlação-entre-as-variáveis." class="level3">
+<h3 class="anchored" data-anchor-id="crie-um-scatterplot-entre-duas-variáveis-das-resposta-anterior.-qual-a-relação-da-imagem-com-a-correlação-entre-as-variáveis.">12. Crie um scatterplot entre duas variáveis das resposta anterior. Qual a relação da imagem com a correlação entre as variáveis.</h3>
+<p>Resposta: foram escolhidas as variávels <em>shot_distance</em> e <em>loc_y</em> para elaboração do <em>scatterplot</em>, conforme apresentado abaixo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x=</span>shot_distance, <span class="at">y=</span>loc_y)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatterplot entre 'shot_distance' e 'loc_y'"</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pd_estatistica_cientista_dados_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>O gráfico de dispersão confirma uma correlação positiva forte entre as variáveis, representada por uma inclinação ascendente constante. Na prática, isso indica que o aumento na coordenada vertical (<code>loc_y</code>) é o principal fator para o aumento da distância total do arremesso (<code>shot_distance</code>). Essa relação quase linear sugere que a distância é altamente dependente da posição do jogador em relação à linha de fundo da quadra.</p>
+</section>
+<section id="crie-um-gráfico-linha-de-duas-das-variáveis.-acrescente-uma-legenda-e-rótulos-nos-eixos." class="level3">
+<h3 class="anchored" data-anchor-id="crie-um-gráfico-linha-de-duas-das-variáveis.-acrescente-uma-legenda-e-rótulos-nos-eixos.">13. Crie um gráfico linha de duas das variáveis. Acrescente uma legenda e rótulos nos eixos.</h3>
+<p>Resposta: as variáveis escolhidas foram <em>loc_x</em> e <em>loc_y</em>. Como a base de dados possui 25.697 observações, optou-se por utilizar apenas as primeiras 100 observações para criação do gráfico, a fim de permitir melhor visualização dos dados. O gráfico é apresentado abaixo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>),]) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> loc_y, <span class="at">x=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>),])), <span class="at">group=</span><span class="dv">1</span>, <span class="at">color =</span> <span class="st">"Localização Y (loc_y)"</span>)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> loc_x, <span class="at">x=</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(dados[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>),])), <span class="at">group=</span><span class="dv">1</span>, <span class="at">color =</span> <span class="st">"Localização X (loc_x)"</span>)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Localização Y (loc_y)"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"Localização X (loc_x)"</span> <span class="ot">=</span> <span class="st">"blue"</span>)) <span class="sc">+</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="cn">NULL</span>, <span class="at">title =</span> <span class="st">"Gráfico de 'loc_x' e 'loc_y'"</span>, <span class="at">x =</span> <span class="st">"Observação"</span>, <span class="at">y =</span> <span class="st">"Valor"</span>) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pd_estatistica_cientista_dados_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

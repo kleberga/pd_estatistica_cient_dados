@@ -1,0 +1,6 @@
+"0","ggplot(dados, aes(x=shot_distance, y=loc_y)) +"
+"0","  geom_point() + "
+"0","  ggtitle(""Scatterplot entre 'shot_distance' e 'loc_y'"") +"
+"0","  theme("
+"0","    plot.title = element_text(face = ""bold"")"
+"0","  )"

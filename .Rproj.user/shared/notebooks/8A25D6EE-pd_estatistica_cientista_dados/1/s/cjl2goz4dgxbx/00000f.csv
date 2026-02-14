@@ -1,0 +1,6 @@
+"0","#| message: FALSE"
+"0","library(tidyverse)"
+"0","library(skimr)"
+"0",""
+"0","# definir a vírgula como separador de decimal"
+"0","options(OutDec = "","")"

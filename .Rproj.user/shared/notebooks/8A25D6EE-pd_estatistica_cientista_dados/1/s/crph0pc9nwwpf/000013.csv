@@ -1,0 +1,8 @@
+"0","dados_playoffs <- dados %>% "
+"0","  group_by(playoffs) %>% "
+"0","  summarise("
+"0","    total_shots = n(),"
+"0","    total_shot_made_flag = sum(shot_made_flag),"
+"0","    proporcao_acertos = total_shot_made_flag/total_shots * 100"
+"0","    )"
+"0","dados_playoffs"
