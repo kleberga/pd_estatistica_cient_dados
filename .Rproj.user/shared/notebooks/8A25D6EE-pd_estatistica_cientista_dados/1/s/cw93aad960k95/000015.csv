@@ -1,3 +1,4 @@
+"0","#| layout-nrow: 4"
 "0","# calcular as métricas"
 "0","media_minutes_remaining <- dados$minutes_remaining %>% mean()"
 "0","std_minutes_remaining <- dados$minutes_remaining %>% sd()"
